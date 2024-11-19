@@ -1,0 +1,460 @@
+definitions:
+  attach.UploadBlobRes:
+    properties:
+      url:
+        description: 文件路径
+        type: string
+    type: object
+  entity.AddEntityMultiReq:
+    properties:
+      chainMagic:
+        description: 链网络标识
+        maxLength: 30
+        minLength: 1
+        type: string
+      chainName:
+        description: 链名
+        maxLength: 30
+        minLength: 1
+        type: string
+      entities:
+        description: 非同质资产列表
+        items:
+          $ref: '#/definitions/entity.EntityStruct'
+        type: array
+      extension:
+        description: blob扩展名
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryId:
+        description: 模板ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryName:
+        description: 模板名称
+        maxLength: 50
+        minLength: 1
+        type: string
+      hash:
+        description: blob哈希
+        maxLength: 100
+        minLength: 1
+        type: string
+      possessor:
+        description: 拥有者
+        maxLength: 255
+        minLength: 1
+        type: string
+      taxCollector:
+        description: 收税人
+        maxLength: 255
+        minLength: 1
+        type: string
+      type:
+        description: 类型(1:普通,2:限量,默认:1)
+        maximum: 2
+        minimum: 1
+        type: integer
+    required:
+    - chainMagic
+    - chainName
+    - entities
+    - factoryId
+    - possessor
+    - taxCollector
+    - type
+    type: object
+  entity.AddEntityReq:
+    properties:
+      chainMagic:
+        description: 链网络标识
+        maxLength: 30
+        minLength: 1
+        type: string
+      chainName:
+        description: 链名
+        maxLength: 30
+        minLength: 1
+        type: string
+      entityId:
+        description: 非同质资产ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      extension:
+        description: blob扩展名
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryId:
+        description: 模板ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryName:
+        description: 模板名称
+        maxLength: 50
+        minLength: 1
+        type: string
+      hash:
+        description: blob哈希
+        maxLength: 100
+        minLength: 1
+        type: string
+      possessor:
+        description: 拥有者
+        maxLength: 255
+        minLength: 1
+        type: string
+      taxAssetPrealnum:
+        description: 缴纳数量
+        maxLength: 50
+        minLength: 1
+        type: string
+      taxCollector:
+        description: 收税人
+        maxLength: 255
+        minLength: 1
+        type: string
+      type:
+        description: 类型(1:普通,2:限量,默认:1)
+        maximum: 2
+        minimum: 1
+        type: integer
+    required:
+    - chainMagic
+    - chainName
+    - entityId
+    - factoryId
+    - possessor
+    - taxAssetPrealnum
+    - taxCollector
+    - type
+    type: object
+  entity.EntityStruct:
+    properties:
+      entityId:
+        description: 非同质资产ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      taxAssetPrealnum:
+        description: 缴纳数量
+        maxLength: 50
+        minLength: 1
+        type: string
+      taxCollector:
+        description: 收税人
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - entityId
+    - taxAssetPrealnum
+    type: object
+  entity.GetUserFactoryAllRes:
+    properties:
+      factories:
+        description: factory 列表
+        items:
+          $ref: '#/definitions/entity.UserFactoryInfo'
+        type: array
+    type: object
+  entity.GetUserFactoryEntityAllRes:
+    properties:
+      entities:
+        description: factory/entites 列表
+        items:
+          $ref: '#/definitions/entity.UserFactoryEntityInfo'
+        type: array
+    type: object
+  entity.SubEntity:
+    properties:
+      entityId:
+        description: 非同质资产ID
+        type: string
+      taxAssetPrealnum:
+        description: 缴纳数量
+        type: string
+      taxCollector:
+        description: 收税人
+        type: string
+    type: object
+  entity.UpdateEntityReq:
+    properties:
+      chainMagic:
+        description: 链网络标识
+        maxLength: 30
+        minLength: 1
+        type: string
+      chainName:
+        description: 链名
+        maxLength: 30
+        minLength: 1
+        type: string
+      entityId:
+        description: 非同质资产ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryId:
+        description: 模板ID
+        maxLength: 50
+        minLength: 1
+        type: string
+      factoryName:
+        description: 模板名称
+        maxLength: 50
+        minLength: 1
+        type: string
+      possessor:
+        description: 拥有者
+        maxLength: 255
+        minLength: 1
+        type: string
+    required:
+    - chainMagic
+    - chainName
+    - entityId
+    - factoryId
+    type: object
+  entity.UserFactoryEntityInfo:
+    properties:
+      chainMagic:
+        description: 链网络标识
+        type: string
+      chainName:
+        description: 链名
+        type: string
+      entityId:
+        description: 非同质资产ID
+        type: string
+      extension:
+        description: blob扩展名
+        type: string
+      factoryId:
+        description: 模板ID
+        type: string
+      factoryName:
+        description: 模板名称
+        type: string
+      hash:
+        description: blob哈希
+        type: string
+      possessor:
+        description: 拥有者
+        type: string
+      subEntities:
+        description: 子集
+        items:
+          $ref: '#/definitions/entity.SubEntity'
+        type: array
+      taxAssetPrealnum:
+        description: 缴纳数量
+        type: string
+      taxCollector:
+        description: 收税人
+        type: string
+      type:
+        description: 类型(1:普通,2:限量,默认:1)
+        type: integer
+    type: object
+  entity.UserFactoryInfo:
+    properties:
+      chainMagic:
+        description: 链网络标识
+        type: string
+      chainName:
+        description: 链名
+        type: string
+      factoryId:
+        description: 模板ID
+        type: string
+      factoryName:
+        description: 模板名称
+        type: string
+      numberOfEntities:
+        description: 持有的 entity 数量
+        type: integer
+    type: object
+host: localhost:3000
+info:
+  contact: {}
+  description: This is a complex Chain Cms.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Chain Cms Doc
+  version: "1.0"
+paths:
+  /attach/upload/blob:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: blob名称
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: blob扩展名
+        in: formData
+        name: extension
+        type: string
+      - description: blob内容
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/attach.UploadBlobRes'
+      summary: 上传文件
+      tags:
+      - 附件模块
+  /entity/add:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求参数
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/entity.AddEntityReq'
+      produces:
+      - pplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+      summary: 新增 entity
+      tags:
+      - entity 模块
+  /entity/add/multi:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求参数
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/entity.AddEntityMultiReq'
+      produces:
+      - pplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+      summary: 批量新增 entity
+      tags:
+      - entity 模块
+  /entity/factory/all:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 拥有者
+        in: query
+        maxLength: 255
+        minLength: 1
+        name: possessor
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.GetUserFactoryAllRes'
+      summary: 获取用户持有的 factory 总览
+      tags:
+      - entity 模块
+  /entity/factory/entity/all:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: 链网络标识
+        in: query
+        maxLength: 30
+        minLength: 1
+        name: chainMagic
+        required: true
+        type: string
+      - description: 链名
+        in: query
+        maxLength: 30
+        minLength: 1
+        name: chainName
+        required: true
+        type: string
+      - description: 模板ID
+        in: query
+        maxLength: 50
+        minLength: 1
+        name: factoryId
+        type: string
+      - description: 拥有者
+        in: query
+        maxLength: 255
+        minLength: 1
+        name: possessor
+        required: true
+        type: string
+      - description: 类型(1:普通,2:限量,默认:1)
+        in: query
+        maximum: 2
+        minimum: 1
+        name: type
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.GetUserFactoryEntityAllRes'
+      summary: 获取用户持有的(某个 factory 下的)所有 entity
+      tags:
+      - entity 模块
+  /entity/update:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: 请求参数
+        in: body
+        name: object
+        required: true
+        schema:
+          $ref: '#/definitions/entity.UpdateEntityReq'
+      produces:
+      - pplication/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+      summary: 更新 entity
+      tags:
+      - entity 模块
+securityDefinitions:
+  Bearer:
+    description: Add prefix "Bearer ", such as "Bearer token".
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
