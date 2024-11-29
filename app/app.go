@@ -29,7 +29,7 @@ import (
 
 func NewApp() *gin.Engine {
 	// 设置运行模式
-	gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	// 初始化根目录
 	err := helper.InitRootPath()
